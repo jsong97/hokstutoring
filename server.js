@@ -54,6 +54,22 @@ let Video = require('./models/youtubeVideos');
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+// get customers API
+app.get('/api/customers', (req, res) => {
+  Video.find({}, function(err, videos){
+    res.render('index', {
+      videos: videos
+    })
+  });
+
+  const customers = [
+    {id: 1, firstName: 'John', lastName: 'Doe'},
+    {id: 2, firstName: 'Sarah', lastName: 'Smith'},
+  ];
+
+  res.json(customers);
+})
+
 
 // get Reviews API
 app.get('/api/reviews', (req, res) => {

@@ -8,7 +8,6 @@ import { Redirect } from 'react-router-dom';
 
 
 import Customers from './customers/customers';
-import Reviews from './reviews/reviews';
 import Slider from './reviews/slider';
 import Queries from './queries';
 import Game from './tileGame/game';

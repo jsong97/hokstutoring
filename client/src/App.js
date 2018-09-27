@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
+import Slider from './components/pages/reviews/slider';
 
 class App extends Component {
   // Initialize state
-  state = { reviews: [] }
+  state = {
+    reviews: [],
+    customers: []
+  }
 
   // Fetch passwords after first mount
+  // componentDidMount(){
+  //   Promise.all([
+  //     fetch('/api/reviews'),
+  //     fetch('/api/customers')
+  //   ])
+  //   .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+  //   .then(([reviews, customers]) => this.setState({
+  //       reviews: reviews,
+  //       customers: customers
+  //   }));
+  // }
   componentDidMount() {
     fetch('/api/reviews')
       .then(res => res.json())
@@ -13,7 +28,6 @@ class App extends Component {
   }
 
   render() {
-    const { revoews } = this.state;
     return (
       <div className="App">
         <div>
@@ -22,6 +36,10 @@ class App extends Component {
             {this.state.reviews.map(review =>
               <li key={review.id}> {review.firstName} {review.lastName}</li>
             )}
+          </ul>
+          <h2> Customers </h2>
+          <ul>
+            <Slider />
           </ul>
         </div>
       </div>
