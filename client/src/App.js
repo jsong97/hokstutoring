@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Slider from './reviews/slider';
+
 class App extends Component {
   // Initialize state
   state = { customers: [] }
@@ -13,7 +15,7 @@ class App extends Component {
   }
 
   render() {
-    const { passwords } = this.state;
+    const { customers } = this.state;
     return (
       <div className="App">
         <div>
@@ -24,7 +26,8 @@ class App extends Component {
             )}
           </ul>
         </div>
-      )}
+        <Slider />
+        )}
       </div>
     );
   }
