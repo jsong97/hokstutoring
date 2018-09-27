@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <h2>Rivews</h2>
+          <h2>Reviews</h2>
           <ul>
             {this.state.reviews.map(review =>
               <li key={review.id}> {review.firstName} {review.lastName}</li>
