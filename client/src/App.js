@@ -1,48 +1,63 @@
 import React, { Component } from 'react';
-import Slider from './components/pages/reviews/slider';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  // Link
+} from 'react-router-dom';
+
+// components
+import Header from './components/headerComponent/header';
+import Footer from './components/footerComponent/footer';
+import HomePage from './components/pages/homePage';
+import Videos from './components/pages/videos';
+import Contact from './components/pages/contact';
+import AboutMe from './components/pages/aboutMe';
+import Blog from './components/pages/blog';
+import AddVideo from './components/pages/addVideo';
+import MathMethods from './components/pages/methods';
+import Specialist from './components/pages/specialist';
+import University from './components/pages/university';
+import SignUp from './components/pages/signUp';
+
+// includes
+import './Assets/css/default.min.css';
+
+fetch('https://localhost:3000/addVideo', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    firstParam: 'yourValue',
+    secondParam: 'yourOtherValue',
+  })
+})
 
 class App extends Component {
-  // Initialize state
-  state = {
-    reviews: [],
-    customers: []
-  }
-
-  // Fetch passwords after first mount
-  // componentDidMount(){
-  //   Promise.all([
-  //     fetch('/api/reviews'),
-  //     fetch('/api/customers')
-  //   ])
-  //   .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-  //   .then(([reviews, customers]) => this.setState({
-  //       reviews: reviews,
-  //       customers: customers
-  //   }));
-  // }
-  componentDidMount() {
-    fetch('/api/reviews')
-      .then(res => res.json())
-      .then(reviews => this.setState({reviews}, () => console.log('Reviews fetched..',
-      reviews)));
-  }
-
   render() {
     return (
-      <div className="App">
-        <div>
-          <h2>Reviews</h2>
-          <ul>
-            {this.state.reviews.map(review =>
-              <li key={review.id}> {review.firstName} {review.lastName}</li>
-            )}
-          </ul>
-          <h2> Customers </h2>
-          <ul>
-            <Slider />
-          </ul>
+      <Router>
+        <div className="App">
+
+          <Header />
+
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/Videos' component={Videos} />
+            <Route exact path='/Blog' component={Blog} />
+            <Route exact path='/AboutMe' component={AboutMe} />
+            <Route exact path='/Contact' component={Contact} />
+            <Route exact path='/AddVideo' component={AddVideo} />
+            <Route exact path='/MathMethods' component={MathMethods} />
+            <Route exact path='/SpecialistMaths' component={Specialist} />
+            <Route exact path='/UniversityMaths' component={University} />
+            <Route exact path='/Signup' component={SignUp} />
+
+          <Footer />
+
         </div>
-      </div>
+      </Router>
     );
   }
 }
