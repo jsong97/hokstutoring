@@ -8,26 +8,24 @@ class App extends Component {
 
   // Fetch passwords after first mount
   componentDidMount() {
-    fetch('/api/customers')
+    fetch('/api/reviews')
       .then(res => res.json())
-      .then(customers => this.setState({customers}, () => console.log('Customers fetched..',
-      customers)));
+      .then(reviews => this.setState({reviews}, () => console.log('Reviews fetched..',
+      reviews)));
   }
 
   render() {
-    const { customers } = this.state;
+    const { revoews } = this.state;
     return (
       <div className="App">
         <div>
-          <h2>Customers</h2>
+          <h2>Rivews</h2>
           <ul>
-            {this.state.customers.map(customer =>
-              <li key={customer.id}> {customer.firstName} {customer.lastName}</li>
+            {this.state.reviews.map(review =>
+              <li key={review.id}> {review.firstName} {review.lastName}</li>
             )}
           </ul>
         </div>
-        <Slider />
-        )}
       </div>
     );
   }
