@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Sniglet');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+// colors
+$white: #ffffff;
+$alternateWhite: #F1E9DA;
+$darkGrey: #333;
+$red: #ff1755;
+$mainBlue: #4557bb;
+$editRed: #cc2828;
+
+// Hok colors
+$hokBlue: #56CBF9;
+$hokWhite: #fcfcfc;
+$hokBlack: #010000;
+$hokGreen: #8CD600;
+$hokOrange: #FF7417;
+$trueWhite: #ffffff;
+$lightPink: #FFECF2;
+
+$yellow: #fff200;
+$blue: #0ebeff;
+$green: #47cf73;
+$purple: #ae63e4;
+$black: #28282b;
+$darkGreen: #4CAF50;
+
+
+
+// alerts
+$alertFail: #a94442;
+$alertSuccess: #3c763d;
+
+
+// mixins
+@mixin translateY($e) {
+  -webkit-transform: translateY($e);
+    -moz-transform: translateY($e);
+      transform: translateY($e);
+}
+
+@mixin transition($e) {
+  -webkit-transition:$e;
+    -moz-transition:$e;
+      transition:$e;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 18px;
+  color: $hokBlack;
+  font-weight: 400;
+  font-style: normal;
+  background-color: $hokWhite;
+}
+
+a {
+  text-decoration: none;
+  @include transition(.4s ease-in-out);
+  cursor: pointer;
+
+  &:hover {
+    color: $hokBlue;
+    @include transition(.4s ease-in-out);
+  }
+
+}
+
+.container-fluid {
+  line-height: 24px;
+}
