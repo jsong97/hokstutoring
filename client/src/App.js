@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
-import Slider from './reviews/slider';
-
 class App extends Component {
   // Initialize state
-  state = { customers: [] }
+  state = { reviews: [] }
 
   // Fetch passwords after first mount
   componentDidMount() {
