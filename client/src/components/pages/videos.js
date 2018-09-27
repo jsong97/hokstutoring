@@ -36,7 +36,7 @@ class Videos extends Component {
       <div className="container">
         <div className="componentTitle">
           <h1> Videos </h1>
-          <p> I simplify advanced problems in these videos, showing you the step by step method to solving them! </p>
+          <p> I help simplify advanced problems in these videos, showing you the step by step method to solving them! </p>
           <div id="borderLeft"></div>
         </div>
 
