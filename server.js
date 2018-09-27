@@ -51,7 +51,6 @@ app.use(expressValidator({
 // bring in models
 let Video = require('./models/youtubeVideos');
 
-
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -71,55 +70,6 @@ app.get('/api/customers', (req, res) => {
   res.json(customers);
 })
 
-app.post('/addVideo', function(req, res){
-  const name = req.body.name;
-  const picture = req.body.picture;
-  const chapter = req.body.chapter;
-  const question = req.body.question;
-  const link = req.body.link;
-  // const description = req.body.description;
-  //const file = req.body.picture;
-
-  req.checkBody('name', 'Name is required').notEmpty();
-  req.checkBody('picture', 'Picture is required').notEmpty();
-  req.checkBody('chapter', 'Chapter is required').notEmpty();
-  req.checkBody('question', 'Question is required').notEmpty();
-  req.checkBody('link', 'Link is required').notEmpty();
-  console.log("checkBody worked");
-
-  let errors = req.validationErrors();
-  if (errors){
-    console.log(errors);
-  } else {
-    let newVideo = new Video({
-      name:name,
-      picture:picture,
-      chapter:chapter,
-      question:question,
-      link:link
-    });
-    newVideo.save(function(err){
-      if(err){
-        console.log(err);
-        return;
-      } else {
-        let pathredir = '/addVideo';
-        res.redirect(pathredir);
-      }
-    });
-  }
-});
-
-// get Reviews API
-app.get('/api/video', (req, res) => {
-  Video.find({}, function(err, videos){
-    if(err){
-      console.log(err);
-    } else {
-      res.json(videos);
-    }
-  });
-});
 
 // get Reviews API
 app.get('/api/reviews', (req, res) => {
