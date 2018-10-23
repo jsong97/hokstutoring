@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import VideoModal from './modals/videoModal';
+import VideoModal from './pageComponents/videoModal';
 
 // we don't need this because we're going to include this in App
 // import './Assets/css/default.min.css';
@@ -29,14 +29,16 @@ class Videos extends Component {
   render() {
     let filteredVideos = this.state.videos.filter(
       (video) => {
-        return (video.name.indexOf(this.state.search) !== -1);
+        return (video.name.toLowerCase().indexOf(
+          this.state.search.toLowerCase()) !== -1);
       }
     );
+
     return (
       <div className="container">
         <div className="componentTitle">
           <h1> Videos </h1>
-          <p> I help simplify advanced problems in these videos, showing you the step by step method to solving them! </p>
+          <p> I will simplify advanced problems in these videos, showing you the step by step method to solving them! </p>
           <div id="borderLeft"></div>
         </div>
 

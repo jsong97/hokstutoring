@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import posed from "react-pose";
-import { render} from "react-dom";
+// import { render} from "react-dom";
 import styled from "styled-components";
-import { tween } from "popmotion";
-import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 import { Redirect } from 'react-router-dom';
 
-
-import Customers from './customers/customers';
+// import Customers from './customers/customers';
+// import Reviews from './reviews/reviews';
 import Slider from './reviews/slider';
-import Queries from './queries';
-import Game from './tileGame/game';
+// import Queries from './queries';
+// import Game from './tileGame/game';
 import Map from './myMap';
-import HomeVideoModal from './modals/homeVideoModal';
+import HomeVideoModal from './pageComponents/homeVideoModal';
 // we don't need this because we're going to include this in App
 // import './Assets/css/default.min.css';
 
@@ -81,6 +78,34 @@ class HomePage extends Component {
     }
   }
 
+  resetForm(){
+    document.getElementById('message-form').reset();
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+    let reqBody = {
+      email: this.refs.email.value
+    }
+
+    fetch('/HomePage', {
+      method: 'POST',
+      body: JSON.stringify(reqBody),
+      headers: {'Content-Type':'application/json'}
+    })
+    .then((res) => {
+      if (res.ok){
+        this.resetForm();
+        alert('Thanks for signing up!');
+        return res.json();
+      } else {
+        alert('Something went wrong! Could you try again?');
+      }
+    }).then((json) => {
+      console.log(json);
+    })
+  };
+
   render() {
     return (
       <div className="container-fluid">
@@ -146,10 +171,12 @@ class HomePage extends Component {
         <div className="newsLetter">
         <div class="login-page">
           <div class="form">
-            <form class="register-form">
+            <form id="message-form" onSubmit={this.handleSubmit.bind(this)}>
               <p class="newsLetterMessage">Want to get <br/><span> AWESOME FREEBIES? </span> </p>
-              <input type="text" placeholder="Email"/>
-              <button>sign up for my newsletter</button>
+              <div id="form-group">
+                <input ref="email" class="form-control" type="text" id="email" placeholder="email address"/>
+              </div>
+              <button type="submit">sign up for my newsletter</button>
             </form>
           </div>
         </div>
